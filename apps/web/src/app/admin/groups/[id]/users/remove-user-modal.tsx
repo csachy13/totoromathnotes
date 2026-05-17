@@ -29,7 +29,7 @@ export default function RemoveUserModal({
         toast.success("User removed from group successfully");
         setIsModalOpen(false);
         // Refresh the page to update the user list
-        window.location.reload();
+        // window.location.reload();
       },
       onError: (error) => {
         toast.error(error.message || "Failed to remove user from group");
