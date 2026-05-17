@@ -1,0 +1,5 @@
+{
+  "buildCommand": "pnpm --filter db db:generate && pnpm --filter db db:push --force && NEXT_DISABLE_ESLINT=1 pnpm turbo run build",
+  "outputDirectory": "apps/web/.next",
+  "framework": "nextjs"
+}
