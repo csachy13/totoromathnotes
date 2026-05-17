@@ -31,7 +31,7 @@ export default function AddUsersModal({
   );
 
   // Get existing group users to exclude them
-  const { data: groupUsers } = useQuery(
+  const { data: groupUsers, refetch: refetchGroupUsers } = useQuery(
     trpc.admin.groups.getGroupUsers.queryOptions(
       { groupId },
       {
@@ -65,7 +65,7 @@ export default function AddUsersModal({
         toast.success("Users added to group successfully");
         setIsModalOpen(false);
         // Refresh the page to update the user list
-        window.location.reload();
+        refetchGroupUsers();
       },
       onError: (error) => {
         toast.error(error.message || "Failed to add users to group");

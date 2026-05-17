@@ -31,12 +31,14 @@ interface GroupsListProps {
 export default function GroupsList({ groups: initialGroups }: GroupsListProps) {
   const trpc = useTRPC();
 
+  const { refetch: refetchGroups } = trpc.admin.groups.getAll.useQuery();
+
   const deleteGroup = useMutation(
     trpc.admin.groups.delete.mutationOptions({
       onSuccess: () => {
         toast.success("Group deleted successfully");
-        // Refresh the page to get updated data
-        window.location.reload();
+        // Refresh the groups data
+        refetchGroups();
       },
     })
   );

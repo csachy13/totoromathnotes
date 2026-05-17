@@ -26,38 +26,44 @@ export const authRouter = router({
     }
 
     // Get all permissions for the current user
-    const permissionsWithRelations =
-      await authorizationService.getUserPermissions(userId);
+    if (!userId) {
+      // Handle guest users by returning default permissions
+      return {
+        permissions: [],
+        permissionNames: [],
+        permissionMap: {},
+      };
+    }
 
-    // Return permissions in a convenient format for the frontend
-    return {
-      // Return the full permission objects (including relations if needed by client)
-      permissions: permissionsWithRelations,
+    try {
+      const permissionsWithRelations =
+        await authorizationService.getUserPermissions(userId);
 
-      // Return an array of permission names (e.g. ["wiki:page:read", "wiki:page:create"])
-      permissionNames: permissionsWithRelations.map((p) => {
-        // Construct name from relations. Handle potential nulls defensively.
-        const moduleName = p.module?.name ?? "unknown-module";
-        const actionName = p.action?.name ?? "unknown-action";
-        return `${moduleName}:${p.resource}:${actionName}` as PermissionIdentifier;
-      }),
-
-      // Return a map of permissions for easy checking (e.g. {"wiki:page:read": true})
-      permissionMap: permissionsWithRelations.reduce(
-        (acc, p) => {
+      return {
+        permissions: permissionsWithRelations,
+        permissionNames: permissionsWithRelations.map((p) => {
+          const moduleName = p.module?.name ?? "unknown-module";
+          const actionName = p.action?.name ?? "unknown-action";
+          return `${moduleName}:${p.resource}:${actionName}` as PermissionIdentifier;
+        }),
+        permissionMap: permissionsWithRelations.reduce((acc, p) => {
           const moduleName = p.module?.name;
           const actionName = p.action?.name;
           if (moduleName && actionName) {
-            const name = `${moduleName}:${p.resource}:${actionName}`;
-            if (validatePermissionId(name)) {
-              acc[name as PermissionIdentifier] = true;
-            }
+            acc[`${moduleName}:${p.resource}:${actionName}`] = true;
           }
           return acc;
-        },
-        {} as Record<PermissionIdentifier, boolean>
-      ),
-    };
+        }, {} as Record<PermissionIdentifier, boolean>),
+      };
+    } catch (error) {
+      // Log error and return default permissions
+      console.error("Error fetching permissions:", error);
+      return {
+        permissions: [],
+        permissionNames: [],
+        permissionMap: {},
+      };
+    }
   }),
 
   // Check if the current user has a specific permission
