@@ -35,6 +35,8 @@ import { neon } from "@neondatabase/serverless";
 import { drizzle as drizzleNeon } from "drizzle-orm/neon-http";
 import { drizzle as drizzlePg } from "drizzle-orm/node-postgres";
 import pg from "pg";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 // Create database connection locally instead of importing from index.ts
 const getDb = () => {
@@ -145,7 +147,14 @@ async function runMigrations(force = false) {
 }
 
 // Run migrations if file is executed directly
-if (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) {
+const __filename =
+  typeof __filename !== "undefined"
+    ? __filename
+    : fileURLToPath(import.meta.url);
+const __dirname =
+  typeof __dirname !== "undefined" ? __dirname : dirname(__filename);
+
+if (process.argv[1] && __filename === process.argv[1]) {
   const forceFlag = process.argv.includes("--force");
   runMigrations(forceFlag);
 }

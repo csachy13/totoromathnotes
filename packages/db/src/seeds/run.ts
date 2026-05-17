@@ -1,6 +1,11 @@
 import { createDefaultGroups, seedPermissions } from "./permissions.js";
 import { runDeveloperSeeds } from "./developer-seeds.js";
 import { seedSettings } from "./settings.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = typeof globalThis.__filename !== "undefined" ? globalThis.__filename : fileURLToPath(import.meta.url);
+const __dirname = typeof globalThis.__dirname !== "undefined" ? globalThis.__dirname : dirname(__filename);
 
 /**
  * Main function to run all seed operations.
@@ -45,7 +50,7 @@ async function seed() {
  * Uses Node.js module detection pattern to determine direct execution.
  */
 // Use ES module way to check if the script is run directly
-if (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && __filename === process.argv[1]) {
   void seed().catch((error) => {
     console.error("Failed to run seeds:", error);
     process.exit(1);
