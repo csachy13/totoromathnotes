@@ -76,14 +76,40 @@ export async function PermissionGate({
   let isPublic = false;
 
   if (publicPaths) {
-    // Get the current pathname from the request headers
     const headersList = await headers();
-    // Try to get the path from various headers
-    const referer = headersList.get("referer") || "";
+    
+    // Vercel and Next.js automatically populate 'x-forwarded-path' or 'x-url' 
+    // on every incoming request to your deployment.
+    const xForwardedPath = headersList.get("x-forwarded-path") || "";
     const xUrl = headersList.get("x-url") || "";
-    const pathname = referer ? new URL(referer).pathname : xUrl ? xUrl : "/";
+    const referer = headersList.get("referer") || "";
+    
+    let pathname = "/";
+    
+    // Extract the pathname using platform-default headers
+    if (xForwardedPath) {
+      pathname = xForwardedPath;
+    } else if (xUrl) {
+      try {
+        pathname = new URL(xUrl, "http://localhost").pathname;
+      } catch (e) {
+        pathname = xUrl;
+      }
+    } else if (referer) {
+      try {
+        pathname = new URL(referer).pathname;
+      } catch (e) {
+        pathname = "/";
+      }
+    }
 
+    // Run the standard wild-card matching utility
     isPublic = isPublicPath(pathname, publicPaths);
+    
+    // THE ULTIMATE SAFEGUARD: Force true if they are on auth pages
+    if (pathname === "/login" || pathname === "/register") {
+      isPublic = true;
+    }
   }
 
   // Get session and check auth status
