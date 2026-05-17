@@ -148,11 +148,11 @@ async function runMigrations(force = false) {
 
 // Run migrations if file is executed directly
 const __filename =
-  typeof globalThis.__filename !== "undefined"
-    ? globalThis.__filename
+  typeof __filename !== "undefined"
+    ? __filename
     : fileURLToPath(import.meta.url);
 const __dirname =
-  typeof globalThis.__dirname !== "undefined" ? globalThis.__dirname : dirname(__filename);
+  typeof __dirname !== "undefined" ? __dirname : dirname(__filename);
 
 if (process.argv[1] && __filename === process.argv[1]) {
   const forceFlag = process.argv.includes("--force");
