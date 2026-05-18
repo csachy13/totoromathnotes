@@ -355,7 +355,7 @@
   --radius-full: 9999px;
 
   /* Font families */
-  --font-sans: var(--font-inter, "Inter", "sans-serif");
+  --font-sans: var(--font-lora, "Lora", "sans-serif");
   --font-mono: var(--font-jetbrains-mono, "JetBrains Mono", "monospace");
 }
 

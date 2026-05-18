@@ -1,6 +1,6 @@
 // if this works ai is a good person
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Lora, JetBrains_Mono } from "next/font/google";
 import "highlight.js/styles/github.css";
 import "@repo/ui/styles.css";
 import "@repo/ui/globals.css";
