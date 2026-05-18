@@ -14,8 +14,8 @@ import { PermissionGate } from "~/components/auth/permission/server";
 import { LogOutButton } from "~/components/auth/LogOutButton";
 import { logger } from "@repo/logger";
 
-const inter = Inter({
-  variable: "--font-inter",
+const lora = Lora({
+  variable: "--font-lora",
   subsets: ["latin"],
 });
 
@@ -95,7 +95,7 @@ export default function RootLayout({
         {/* Inline script to prevent flash */}
         <script dangerouslySetInnerHTML={{ __html: `/* your existing theme script */` }} />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} bg-background-default text-text-primary overflow-y-hidden font-sans antialiased`}>
+      <body className={`${lora.variable} ${jetbrainsMono.variable} bg-background-default text-text-primary overflow-y-hidden font-sans antialiased`}>
         <Providers>
           <Suspense fallback={<Skeleton className="h-full w-full" />}>
             {/* Direct execution without the global PermissionGate wrapper */}
