@@ -116,18 +116,18 @@
 
   /* Primary colors (Magenta - #FF00FF) */
   --color-primary-50: #fff0ff;
-  --color-primary-100: #ffe0ff;
-  --color-primary-200: #ffb3ff;
-  --color-primary-300: #ff80ff;
-  --color-primary-400: #ff4dff;
-  --color-primary-500: #ff00ff;
-  --color-primary-600: #e600e6;
-  --color-primary-700: #b300b3;
-  --color-primary-800: #800080;
-  --color-primary-900: #4d004d;
-  --color-primary-1000: #330033;
-  --color-primary-1100: #1a001a;
-  --color-primary-1200: #0d000d;
+  --color-primary-100: #eeeeff;
+  --color-primary-200: #ddddff;
+  --color-primary-300: #ccccff;
+  --color-primary-400: #aaaaff;
+  --color-primary-500: #9999ff;
+  --color-primary-600: #7777ff;
+  --color-primary-700: #5555ff;
+  --color-primary-800: #3333ff;
+  --color-primary-900: #0000ff;
+  --color-primary-1000: #0000cc;
+  --color-primary-1100: #0000aa;
+  --color-primary-1200: #000060;
   --color-primary: var(--color-primary-500);
   --color-primary-foreground: #ffffff;
 
