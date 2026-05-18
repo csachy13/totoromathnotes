@@ -569,7 +569,7 @@ export function Sidebar() {
       <div className="bg-background-default dark:bg-background-paper border-border text-text-primary flex h-screen w-72 flex-col border-r p-1 shadow-sm">
         <div className="mb-2 flex items-center justify-between p-3">
           <Link href="/" className="text-primary text-2xl font-bold">
-            NextWiki
+            Math Notes
           </Link>
         </div>
 
