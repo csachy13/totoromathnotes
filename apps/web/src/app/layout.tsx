@@ -6,6 +6,7 @@ import "@repo/ui/styles.css";
 import "@repo/ui/globals.css";
 import { dbService } from "~/lib/services";
 import RegisterPage from "./(auth)/register/page";
+import "katex/dist/katex.min.css";
 import { Suspense } from "react";
 import { Skeleton } from "@repo/ui";
 import { Providers } from "~/providers";

@@ -13,6 +13,8 @@ import rehypeHighlight from "rehype-highlight";
 import { customPlugins } from "./plugins";
 import { markdownOptions } from "./core/config";
 import { logger } from "@repo/logger";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 /**
  * Remark plugins for server-side use
@@ -23,15 +25,13 @@ export const serverRemarkPlugins: PluggableList = [
   remarkEmoji,
   remarkDirective,
   remarkDirectiveRehype,
+  remarkMath,        // ← add
   ...customPlugins,
 ];
 
-/**
- * Base rehype plugins for server-side use
- */
 export const baseRehypePlugins: PluggableList = [
   rehypeHighlight,
-  // Add other base rehype plugins here
+  rehypeKatex,       // ← add
 ];
 
 export interface ServerMarkdownProcessorOptions {

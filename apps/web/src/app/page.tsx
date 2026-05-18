@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { getWikiPageByPath } from "./[...path]/page";
 import { WikiFolderTree } from "~/components/wiki/WikiFolderTree";
+import "katex/dist/katex.min.css";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "~/lib/auth";
 

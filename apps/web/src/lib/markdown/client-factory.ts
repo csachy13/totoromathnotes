@@ -14,6 +14,8 @@ import rehypeHighlight from "rehype-highlight";
 import { customPlugins } from "./plugins";
 import { markdownOptions } from "./core/config";
 import { markdownComponents } from "./components";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 /**
  * Remark plugins safe for client-side use
@@ -24,15 +26,13 @@ export const clientRemarkPlugins: PluggableList = [
   remarkEmoji,
   remarkDirective,
   remarkDirectiveRehype,
+  remarkMath,        // ← add
   ...customPlugins,
 ];
 
-/**
- * Rehype plugins safe for client-side use
- */
 export const clientRehypePlugins: PluggableList = [
   rehypeHighlight,
-  // Add other client-safe rehype plugins here
+  rehypeKatex,       // ← add
 ];
 
 export interface ClientMarkdownProcessorOptions {
