@@ -25,9 +25,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NextWiki - Modern Wiki for Next.js",
+  title: "Math Notes",
   description:
-    "An open-source wiki system built with Next.js, Drizzle, tRPC, and NextAuth",
+    "High school math notes for studying and EOGs",
 };
 
 let userCount: number | null = null;
