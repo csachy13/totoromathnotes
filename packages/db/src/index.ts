@@ -14,8 +14,10 @@ import * as schema from "./schema/index.js";
 import { logger } from "@repo/logger";
 
 // Required for Neon WebSocket driver in Node.js environments
-import ws from "ws";
-neonConfig.webSocketConstructor = ws; // ← needed outside of browser/edge runtimes
+// Use native WebSocket on Vercel/edge, polyfill with 'ws' in local Node.js
+if (typeof WebSocket === "undefined") {
+  neonConfig.webSocketConstructor = require("ws");
+}
 
 dotenv.config({ path: [".env.local", ".env"] });
 
