@@ -64,12 +64,6 @@ export function UserMenu() {
           <span className="font-semibold">{session.user.email}</span>
         </div>
         <div className="border-t border-gray-100">
-          <Link
-            href="/profile"
-            className="text-text-primary hover:bg-card-hover block px-4 py-2 text-sm"
-          >
-            Your Profile
-          </Link>
           <button
             onClick={() => signOut({ callbackUrl: "/" })}
             className="text-text-primary hover:bg-card-hover block w-full px-4 py-2 text-left text-sm"
