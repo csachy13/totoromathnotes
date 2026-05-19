@@ -15,15 +15,23 @@ export function UserMenu() {
   }
 
   if (!isAuthenticated) {
-    return (
+  return (
+    <div className="flex items-center gap-2">
+      <Link
+        href="/register"
+        className="border-border hover:bg-card-hover text-text-primary rounded-lg border px-4 py-2 text-sm font-medium transition-colors"
+      >
+        Register
+      </Link>
       <Link
         href="/login"
-        className="border-border hover:bg-card-hover text-text-primary rounded-lg border px-4 py-2 text-sm font-medium transition-colors"
+        className="bg-primary text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:opacity-90"
       >
         Sign in
       </Link>
-    );
-  }
+    </div>
+  );
+}
 
   return (
     <Popover>
