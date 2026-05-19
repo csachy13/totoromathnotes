@@ -16,7 +16,7 @@ import { PermissionGate } from "~/components/auth/permission/server";
 import { LogOutButton } from "~/components/auth/LogOutButton";
 
 export const revalidate = 900; // Revalidate every 15 minutes
-export const dynamic = "force-static";
+// export const dynamic = "force-static";
 
 export default async function Home() {
   const recentPages = await dbService.wiki.getRecentPages(5);
