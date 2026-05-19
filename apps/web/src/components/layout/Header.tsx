@@ -56,12 +56,12 @@ export async function Header({
           </div>
         )}
 
-        {/* Page action buttons - moved closer to title */}
+        {/* Page action buttons */}
         {pageMetadata?.path && pageMetadata.id && (
           <div className="ml-4 flex items-center space-x-2">
             <ClientRequirePermission permission="wiki:page:update">
               <Link
-                href={`/${pageMetadata.path}?edit=true`}
+                href={isHomePage ? `/?edit=true` : `/${pageMetadata.path}?edit=true`}
                 className="text-text-secondary hover:text-primary hover:border-accent/20 flex items-center rounded border border-transparent px-2 py-1 text-xs"
               >
                 <PencilIcon className="mr-1 h-3.5 w-3.5" />
@@ -85,7 +85,11 @@ export async function Header({
                   isCurrentUserLockOwner={
                     pageMetadata.isCurrentUserLockOwner || false
                   }
-                  editPath={`/${pageMetadata.path}?edit=true`}
+                  editPath={
+                    isHomePage
+                      ? `/?edit=true`
+                      : `/${pageMetadata.path}?edit=true`
+                  }
                   displayMode="header"
                 />
               )}
@@ -95,10 +99,7 @@ export async function Header({
       </div>
 
       <div className="flex items-center space-x-3">
-        {/* Tags removed from here */}
-        {/* {env.NODE_ENV === "development" && <RandomNumberDisplay />} */}
         <ThemeToggle />
-        {/* Wrap client components needing session in Suspense */}
         <Suspense
           fallback={
             <div className="h-9 w-20 animate-pulse rounded-md bg-gray-200 dark:bg-gray-700"></div>
