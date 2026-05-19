@@ -163,13 +163,6 @@ export function LoginForm() {
           >
             GitHub
           </Button>
-          <Button
-            onClick={() => signIn("google", { callbackUrl: "/" })}
-            variant="outlined"
-            color="neutral"
-          >
-            Google
-          </Button>
         </div>
       </div>
     </>
